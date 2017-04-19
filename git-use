@@ -68,3 +68,51 @@ patch b < diff.txt
 cp b a
 patch -R a < diff.txt
 命令diff和patch还可以对目录进行比较和恢复操作
+----
+首先建立一个新的工作目录，进入该目录后，执行git init创建版本库。
+$ cd /path/to/my/workspace
+$ mkdir demo
+$ cd demo
+$ git init
+初始化空的 Git 版本库于 /path/to/my/workspace/demo/.git/
+实际上，如果Git的版本是1.6.5或更新的版本，可以在git init命令的后面直接输入目录名称，自动完成目录的创建。
+$ cd /path/to/my/workspace
+$ git init demo
+初始化空的 Git 版本库于 /path/to/my/workspace/demo/.git/
+$ cd demo
+从上面版本库初始化后的输出中，可以看到执行git init命令在工作区创建了隐藏目录.git。
+这个隐藏的.git目录就是Git版本库（又叫仓库，repository）。
+-------
+显示版本库.git目录所在的位置。
+$ git rev-parse --git-dir
+/path/to/my/workspace/demo/.git
+显示工作区根目录。
+$ git rev-parse --show-toplevel
+/path/to/my/workspace/demo
+
+打开/.git/config文件进行编辑。
+git config -e
+编辑文件，或命令行，如：
+$ git config user.name
+$ git config user.email
+
+打开用户主目录下的.gitconfig文件,全局配置文件进行编辑。
+git config -e --global
+编辑文件，或命令行，如：
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+执行下面的命令，将打开/etc/gitconfig系统级配置文件进行编辑。
+如果Git安装在/usr/local/bin下，这个系统级的配置文件也可能是在/usr/local/etc/gitconfig。
+$ git config -e --system
+---修改提交者信息：
+提交者的信息是由之前设置的环境变量user.name和user.email给出的。而最新的提交（上面第一个提交）因为删除了user.name和user.email，提交时Git对提交者的用户名和邮件地址做了大胆的猜测，这个猜测可能是错的。
+为了保证提交时提交者和作者信息的正确性，重新恢复user.name和user.email的设置。记住不要照抄照搬下面的命令，请使用您自己的用户名和邮件地址。
+$ git config --global user.name "Jiang Xin"
+$ git config --global user.email jiangxin@ossxp.com
+然后执行下面的命令，重新修改最新的提交，改正作者和提交者的错误信息。
+$ git commit --amend --allow-empty --reset-author
+说明：
+参数--amend是对刚刚的提交进行修补，这样就可以改正前面错误的提交（用户信息错误），而不会产生另外的新提交。
+参数--allow-empty是因为要进行修补的提交实际上是一个空白提交，Git默认不允许空白提交。
+参数--reset-author的含义是将Author（提交者）的ID重置，否则只会影响最新的Commit（提交者）的ID。这条命令也会重置AuthorDate信息。
