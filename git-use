@@ -116,3 +116,10 @@ $ git commit --amend --allow-empty --reset-author
 参数--amend是对刚刚的提交进行修补，这样就可以改正前面错误的提交（用户信息错误），而不会产生另外的新提交。
 参数--allow-empty是因为要进行修补的提交实际上是一个空白提交，Git默认不允许空白提交。
 参数--reset-author的含义是将Author（提交者）的ID重置，否则只会影响最新的Commit（提交者）的ID。这条命令也会重置AuthorDate信息。
+---
+可以通过执行git diff命令看到修改后的文件和版本库中文件的差异。（实际上这句话有问题，和本地比较的不是版本库中的文件，而是一个中间状态的文件）
+---
+  877  git log  --oneline 
+  878  git log  --oneline  .
+  879  git show e19f582
+

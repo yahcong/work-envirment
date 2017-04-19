@@ -1,0 +1,19 @@
+[user]
+	name = yahcong
+	email = ycong@redhat.com
+[format]
+	signoff = true
+[color]
+	ui = true
+	editor = vim
+[sendemail]
+	chainreplyto = true
+	signedoffbycc = true
+	supressfrom = true
+	smtpserver = smtp.corp.redhat.com
+	confirm=auto
+[Alias]
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	ch = commit --amend -C HEAD	
+	pf = push -f
+	patch = format-patch -1
