@@ -1,0 +1,184 @@
+  610  virt-install -n rhel68 --memory=2048 --vcpus=4 --network bridge=virbr0 --import --disk ./rhel68-64-virtio.qcow2 
+  611  virt-install -n rhel68 --memory=2048 --vcpus=4 --network bridge=virbr0 --import --disk ./rhel69-64-virtio.qcow2 
+  612  virsh list --name
+  613  virsh list --all
+  614  virsh --connet qemu://system start rhel168
+  615  virsh --connect qemu://system start rhel168
+  616  history
+  617  reboot
+  618  sudo qemu -hda vubuntu.img -boot d -cdrom ~/kvm/ubuntu-12.04.3-desktop-amd64.iso -m 1024
+  619  exit
+  620  brctl addbr br0 
+  621  brctl addif br0 eth0 
+  622  ifconfig 
+  623  lsmod 
+  624  lsmod|grep eth
+  625  lsmod|grep inter
+  626  lsmod|grep 
+  627  lsmod|grep ne
+  628  lsmod|grep ne*
+  629  lsmod|grep ne
+  630  -m 1024 -drive file=/data/images/CentOS6_4.qcow2,if=virtio \
+  631  qemu-img -m 1024 -drive file=~/kvm/rh ,if=virtio \
+  632  qemu-img -m 1024 -drive file kvm/rhel72-64-virtio.qcow2 ,if=virtio -net nic ,model=virtio -net tap,script=no -nographic -vnc :0
+  633  qemu-kvm -m 1024 -drive file kvm/rhel72-64-virtio.qcow2 ,if=virtio -net nic ,model=virtio -net tap,script=no -nographic -vnc :0
+  634  qemu-kvm -m 1024  file kvm/rhel72-64-virtio.qcow2 ,if=virtio -net nic ,model=virtio -net tap,script=no -nographic -vnc :0
+  635  qemu-kvm -m 1024 -drive file kvm/rhel72-64-virtio.qcow2 ,if=virtio -net nic ,model=virtio -net tap,script=no -nographic -vnc :0
+  636  ifconfig 
+  637  qemu-kvm -m 1024 -drive file kvm/rhel72-64-virtio.qcow2 ,if=virtio -net nic ,model=virtio -net tap,script=no -nographic -vnc :0
+  638  ll /dev/net/tun
+  639  ifconfig
+  640  ifconfig eth0
+  641  ifconfig interface
+  642  brctl addif br0 enp0s25
+  643  brctl stp br0 on 
+  644  ifconfig eth0 0
+  645  ifconfig enp0s25 0
+  646  dhclient br0 
+  647  echo $/
+  648  ls  /etc/sysconfig/network-scripts/ifcfg-eth0
+  649  ls  /etc/sysconfig/network-scripts/ifcfg-enp0s25 
+  650  reboot
+  651  ls
+  652  cd /var/lib/libvirt/
+  653  ls
+  654  cd images/
+  655  ls
+  656  cp /home/ycong/kvm/rhel72-64-virtio.qcow2 .
+  657  ls
+  658  ll
+  659  chown qemu:qemu rhel72-64-virtio.qcow2 
+  660  chmod 755 rhel72-64-virtio.qcow2 
+  661  ll
+  662  clear
+  663  ls
+  664  brctl show
+  665  ip a
+  666  ls
+  667  rm -f rhel72-64-virtio.qcow2 
+  668  wget http://ibm-x3250m4-03.rhts.eng.pek2.redhat.com/images/rhel72-64-virtio.qcow2
+  669  ls
+  670  brctl delif br0
+  671  brctl 
+  672  brctl delbr br0
+  673  ifdown br0
+  674  brctl delbr br0
+  675  ip a
+  676  clear
+  677  systemctl restart network
+  678  ip a
+  679  pwd
+  680  brctl show
+  681  ping www.baidu.com
+  682  ip route
+  683  ls
+  684  man ip
+  685  ip address flush dev ens0s25
+  686  ip address flush dev enp0s25
+  687  ip a
+  688  ping www.baidu.com
+  689  vim /etc/sysconfig/network-scripts/ifcfg-enp0s25 
+  690  vim /etc/sysconfig/network-scripts/ifcfg-br0 
+  691  systemctl restart network
+  692  ip a
+  693  cd /etc/sysconfig/network-scripts/
+  694  ls
+  695  vim ifcfg-br0 
+  696  vim ifcfg-enp0s25 
+  697  systemctl restart network
+  698  ip a
+  699  ifup br0
+  700  ip a
+  701  dhclient -v br0
+  702  ip a
+  703  clear
+  704  ls
+  705  systemctl restart network
+  706  ip a
+  707  clear
+  708  ls
+  709  history
+  710  ls
+  711  vim ifcfg-br0
+  712  vim ifcfg-enp0s25 
+  713  ls
+  714  ip -a
+  715  ip a
+  716  ping www.baidu.com
+  717  systemctl restart network
+  718  ping www.baidu.com
+  719  ifup br0
+  720  history
+-----------------------------
+ping www.baidu.com
+  721  brctl addif br0 enp0s25
+  722  ping www.baidu.com
+  723  systemctl restart network
+  724  ip addr
+  725  ls
+  726  mv ifcfg-enp0s25 ifcfg-enp0s25.bk
+  727  reboot
+  728  nmcli 
+  729  nmcli  --help
+  730  reboot
+  731  clear
+  732  ls
+  733  vim ifcfg-enp0s25 
+  734  brctl show
+  735  vim ifcfg-br0 
+  736  brctl show
+  737  vim ifcfg-enp0s25 
+  738  dhclient enp0s25
+  739  ip a
+  740  ping www.baidu.com
+  741  ip a
+  742  clear
+  743  ls
+  744  ifup enp0s25
+  745  systemctl status NetworkManager
+  746  systemctl status NetworkManage
+  747  systemctl status NetworkManager
+  748  dhclient enp0s25
+  749  systemctl restart network
+  750  systemctl status network
+  751  journalctl -xe
+  752  vim /etc/selinux/config 
+  753  setenforce 0
+  754  ip a
+  755  ifup enp0s25
+  756  ip a
+  757  clear
+  758  ls
+  759  clear
+  760  ip a
+  761  rebot
+  762  reboot
+  763  systemctl restart network
+  764  ip addr
+  765  ip addr -a
+  766  ip addr 
+  767  ip addr 
+  768  ip addr 
+  769  systemctl restart network
+  770  ls
+  771  vim ifcfg-enp0s25 
+  772  ls
+  773  ls -a
+  774  clear
+  775  ip a
+  776  clear
+  777  ls
+  778  cd
+  779  clear
+  780  ls
+  781  systemctl status network
+  782  systemctl status NetworkManager
+  783  systemctl status NetworkManager
+  784  systemctl enabled NetworkManager
+  785  systemctl enable NetworkManager
+  786  clear
+  787  ls
+  788  reboot
+  789  cd
+  790  history
+

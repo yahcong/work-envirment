@@ -1,0 +1,4 @@
+
+export BUILD=RHEL-7.3-20161019.0
+python JobSubmitter_git.py kdump-test-t1 --repo-url "https://github.com/kdump-test/kdump-test/archive/master.tar.gz#" --bare --systype=Machine --arch=x86_64
+

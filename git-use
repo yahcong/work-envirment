@@ -1,0 +1,70 @@
+# 获取主干最新代码
+$ git checkout master
+$ git pull
+
+# 新建一个开发分支myfeature
+$ git checkout -b myfeature
+
+$ git add --all
+$ git status
+$ git commit --verbose
+git commit 命令的verbose参数，会列出 diff 的结果。
+
+分支的开发过程中，要经常与主干保持同步。
+$ git fetch origin
+$ git rebase origin/master
+
+将多个commit合并这就要用到 git rebase 命令。
+$ git rebase -i origin/master
+git rebase命令的i参数表示互动（interactive），这时git会打开一个互动界面，进行下一步操作。
+ 
+git log b37676fec5937c9f35d75bcafa81979bc2b54980
+  760  yum install -y git-email
+  761  sudo yum install -y git-email
+  764  git status
+  765  git commit -sm "add test case for cve bug 1398457"
+  767  git format-patch -1
+  769  git status
+  770  git lola
+  772  git-review 
+git send-email  0001-XXXX.patch --to kernel-gernel-qe@redhat.com --cc chuhu@redhat.com 
+To register as a user with Engineering's Gerrit:
+Go to https://code.engineering.redhat.com.
+Upload your public ssh key.
+From the top menu bar, click Settings. 
+From the side menu bar, click SSH Public Keys.
+In the Add SSH Public Key box, paste the contents of your public key ~/.ssh/id_rsa.pub.
+Click Add.
+
+git config --list 查看系统变量的配置
+
+从暂存中移除，但不删除文件：
+git rm –cached readme.txt
+取消暂存：
+git reset HEAD readme.txt
+放弃未暂存文件所做的修改：
+git checkout – readme.txt
+
+git clone git@github.com:$your_github_username/kdump-test.git   kdump-test-local
+cd kdump-test-local
+git remote add upstream git@github.com:kdump-test/kdump-test.git
+git remote -v
+Rebase your master branch to make sure it's up to date with upstream kdump-test
+git pull --rebase upstream master # resolve the conflict if any, and repeat step 5.b
+git push -f
+//同步origin 与master
+git pull --rebase upstream master  # no conflict should be seen. 
+git push
+
+diff
+$ diff -u hello world | less -N >diff.txt
+以减号（-）开始的行是只出现在原始文件中的行，而在目标文件中不存在，即被删除的内容.
+以加号（+）开始的行是只出现在目标文件中的行，而在原始文件中不存在，即新增加的内容。
+有了原始文件（hello）和差异文件（diff.txt），若目标文件（world）被删除或被覆盖，可以用下面的命令来恢复目标文件（world）：
+rm b
+cp a b
+patch b < diff.txt
+反之亦然。用目标文件（world）和差异文件（diff.txt）来恢复原始文件（hello），使用如下操作：
+cp b a
+patch -R a < diff.txt
+命令diff和patch还可以对目录进行比较和恢复操作
