@@ -1,0 +1,14 @@
+------------vnfm----
+git clone ssh://git@10.1.69.60:19222/~/vMS.git
+mm:1qaz@WSX
+ssh root@10.1.69.223
+mm:1qaz@WSX
+ssh ycong@10.1.69.223
+mm:redhathuan
+cd /home/ycong/vMS/vnfm
+git branch
+git checkout caterpillar
+vim VNFM.py
+----------openstack------
+ssh ebupt@10.1.69.11
+mm:82325588
