@@ -123,3 +123,5 @@ $ git commit --amend --allow-empty --reset-author
   878  git log  --oneline  .
   879  git show e19f582
 
+------
+git push -u origin master

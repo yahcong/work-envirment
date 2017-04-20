@@ -1,0 +1,52 @@
+ git show
+  825  git commit --am
+  826  git show
+  828  dmesg
+  830  git diff 
+  831  git diff
+  832  git status
+  833  git show
+  835  git status
+  837  rm * -f
+  838  rm * -fr
+  840  git status .
+  841  git checkout .
+  842  git status .
+  843  git show
+  845  git checkout -b test
+  846  git pull ssh://ycong@code.engineering.redhat.com:22/kernel-general refs/changes/46/104846/7
+  848  git show
+  850  cd testcase/
+  852  cd ..
+  853  git show
+  854  git log --oneline
+  856  git show
+  858  1git fetch ssh://ycong@code.engineering.redhat.com:22/kernel-general refs/changes/46/104846/7 && git checkout FETCH_HEAD
+  859  git log --oneline
+  860  git reset f09b341 --hard
+  862  git show
+  863  git fetch ssh://ycong@code.engineering.redhat.com:22/kernel-general refs/changes/46/104846/7 && git checkout FETCH_HEAD
+  864  git show
+  866  git commit --am
+  867  git show
+  869  git log --oneline
+  870  git show f09b341
+修改commit : git commit --am
+  875  git log --oneline
+  876  ls
+  877  git checkout master
+  878  ls
+  879  git cherry-pick 6377049
+  880  ls
+  881  git show
+  882  git review
+  883  git log --oneline
+  884  git reset f09b341  --hard
+  885  git show
+  886  ls
+  887  git pull --rebase
+  888  git cherry-pick 6377049
+  889  git show
+  890  ls
+  891  git review
+

@@ -1,2 +1,23 @@
 python-function
 https://docs.python.org/3/library/functions.html#abs
+print ('hello,'+name+'!')
+"hello," + "world!"
+x="hello,"
+y="world!"
+x+y
+
+lambda:
+>>> foo = [2, 18, 9, 22, 17, 24, 8, 12, 27]
+>>>
+>>> print filter(lambda x: x % 3 == 0, foo)
+[18, 9, 24, 12, 27]
+>>>
+>>> print map(lambda x: x * 2 + 10, foo)
+[14, 46, 28, 54, 44, 58, 26, 34, 64]
+>>>
+>>> print reduce(lambda x, y: x + y, foo)
+139
+reduce把一个函数作用在一个序列[x1, x2, x3, ...]上，这个函数必须接收两个参数!(x,y)，reduce把结果继续和序列的下一个元素做累积计算
+---
+if
+y if cond else x表示条件表达式。意思是当cond为真时，表达式的值为y，否则表达式的值为x
