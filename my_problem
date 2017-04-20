@@ -1,0 +1,10 @@
+
+error:Header V4 RSA/SHA1 Signature, key ID 1abd1afb: NOKEY 
+way:sudo rpm --import /etc/pki/rpm-gpg/RPM*
+建议切换至root用户试试
+
+错误:nothing provides gstreamer1-plugins-ugly needed by netease-cloud-music-
+影音类软件需要rpmfusion源:http://download1.rpmfusion.org/free/fedora/releases/25/Everything/x86_64/os/Packages/r/rpmfusion-free-release-25-1.noarch.rpm
+安装网易云音乐:
+https://github.com/Senorsen/netease-cloud-music-rpm
+
