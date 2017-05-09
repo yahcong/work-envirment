@@ -1,5 +1,6 @@
 python-function
 https://docs.python.org/3/library/functions.html#abs
+<<<<<<< HEAD
 print ('hello,'+name+'!')
 "hello," + "world!"
 x="hello,"
@@ -21,3 +22,117 @@ reduce把一个函数作用在一个序列[x1, x2, x3, ...]上，这个函数必
 ---
 if
 y if cond else x表示条件表达式。意思是当cond为真时，表达式的值为y，否则表达式的值为x
+=======
+函数默认参数要牢记一点：默认参数必须指向不变对象！
+不变对象None，str
+list
+list是一个可变的有序表
+classmates = ['Michael', 'Bob', 'Tracy']
+classmates.pop()
+classmates.pop(i)
+classmates.append('Adam')
+classmates.insert(i, 'Jack')
+
+tuple
+tuple和list非常类似，但是tuple一旦初始化就不能修改
+classmates = ('Michael', 'Bob', 'Tracy')
+
+dict
+dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度。
+ d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
+
+set
+set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。
+要创建一个set，需要提供一个list作为输入集合：
+>>> s = set([1, 2, 3])
+*args是可变参数，args接收的是一个tuple；
+
+**kw是关键字参数，kw接收的是一个dict。
+
+n = 3
+>>> for i in range(n):a
+
+切片：
+L = ['Michael', 'Sarah', 'Tracy', 'Bob', 'Jack']
+>>>L[1:3]
+只写[:]就可以原样复制一个list：
+
+迭代：
+>>> d = {'a': 1, 'b': 2, 'c': 3}
+>>> for key in d:
+...     print(key)
+
+默认情况下，dict迭代的是key。如果要迭代value，可以用for value in d.values()，如果要同时迭代key和value，可以用for k, v in d.items()
+是否可以迭代的判断：
+>>> from collections import Iterable
+>>> isinstance('abc', Iterable) # str是否可迭代
+True
+>>> isinstance([1,2,3], Iterable) # list是否可迭代
+True
+>>> isinstance(123, Iterable) # 整数是否可迭代
+False
+
+定义generator:
+1.只要把一个列表生成式的[]改成()，就创建了一个generator
+L = [x * x for x in range(10)]
+g = (x * x for x in range(10))
+2.把print(b)改为yield b
+generator的函数，在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。
+把函数改成generator后，我们基本上从来不会用next()来获取下一个返回值，而是直接使用for循环来迭代：
+杨辉三角：
+  L = [1] + [L[i]+L[i+1] for i in range(0, len(L)-1)] + [1]
+
+凡是可作用于for循环的对象都是Iterable类型；
+
+凡是可作用于next()函数的对象都是Iterator类型，它们表示一个惰性计算的序列；
+
+map:
+list(map(str, [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+['1', '2', '3', '4', '5', '6', '7', '8', '9']
+reduce:
+reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)
+---
+Iterator ----> list
+---
+def _not_divisible(n):
+    return lambda x: x % n > 0
+返回值是一个函数
+
+>>> L = list(range(100))
+>>> L[::-1]
+从后往前
+-
+n=112
+str(n)
+'112'
+str(n)==str(n)[::-1]  
+--
+排序：
+>>> sorted(['bob', 'about', 'Zoo', 'Credit'], key=str.lower, reverse=True)
+返回闭包时牢记的一点就是：返回函数不要引用任何循环变量，或者后续会发生变化的变量。
+返回一个函数时，牢记该函数并未执行，返回函数中不要引用任何可能会变化的变量。
+
+*args表示任何多个无名参数，它是一个tuple；**kwargs表示关键字参数，它是一个dict。并且同时使用*args和**kwargs时，必须*args参数列要在**kwargs前
+*args是非关键字参数，用于元组，**kw是关键字参数，用于字典
+
+functools.partial的作用就是，把一个函数的某些参数给固定住（也就是设置默认值），返回一个新的函数
+
+一个.py文件就称之为一个模块（Module）。
+任何模块代码的第一个字符串都被视为模块的文档注释；
+
+---
+import的path
+>>> import sys
+>>> sys.path
+---
+name是一个属性，printName( )是一个方法，与某个对象进行绑定的函数称作为方法。一般在类里面定义的函数与类对象或者实例对象绑定了，所以称作为方法；
+属性名前面加了2个下划线'__'，则表明该属性是私有属性，否则为公有属性（方法也是一样，方法名前面加了2个下划线的话表示该方法是私有的，否则为公有的）。
+有了__init__方法，在创建实例的时候，就不能传入空的参数了，必须传入与__init__方法匹配的参数
+>>> bart = Student('Bart Simpson', 59)
+>>> bart.name
+>>>>>>> dc0f2ef1453f17b57d8b1bfc841eb61fe8106577
+---屬性----
+注意，__slots__定义的属性仅对当前类实例起作用，对继承的子类是不起作用的
+---
+@property装饰器就是负责把一个方法变成属性调用的
+
