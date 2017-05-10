@@ -134,4 +134,40 @@ git cmmit 的良好習慣：
 	第一行是简要介绍。让人明白做这个改变的原因？而不是你做了什么。
 	接着一个空白的一行。
 	有需要的话，然后用剩下的文本进行详细介绍。
+git clone git://github.com/yahcong/work-envirment.git
+--
+fatal: remote error:    
+You can't push to git://github.com/yahcong/work-envirment.git   Use https://github.com/yahcong/wor
+-
+如果在Git clone的时候用的是
+git://github.com:xx/xxx.git
+的形式, 那么就会出现这个问题，因为这个protocol是不支持push的
+用
+解决办法：
+git remote -v
+git remote rm origin  
+git remote add origin git@github.com:yahcong/work-envirment.git
+git remote -v
+git push --set-upstream origin master
+
+如果
+git clone git@github.com:yahcong/work-envirment.git
+就不會出現此問
+---
+git pull = git fetch + git merge
+git pull --rebase = git fetch + git rebase
+
+git pull
+合併後分支有岔路，表明合併的過程
+git rebase
+合併後無岔路，沒有合併過程的記載
+
+在rebase的过程中，也许会出现冲突(conflict). 在这种情况，Git会停止rebase并会让你去解决 冲突；在解决完冲突后，用"git-add"命令去更新这些内容的索引(index), 然后，你无需执行 git-commit,只要执行:$ git rebase --continue
+这样git会继续应用(apply)余下的补丁。
+在任何时候，你可以用--abort参数来终止rebase的行动，并且"mywork" 分支会回到rebase开始前的状态。
+$ git rebase --abort
+---
+如果你想在rebase的过程中对一部分提交进行修改，你可以在'git rebase'命令中加入'-i'或'--interactive'参数去调用交互模式。
+$ git rebase -i origin/master
+
 

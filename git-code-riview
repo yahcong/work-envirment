@@ -102,4 +102,8 @@ $ git commit -m "remove test.txt"
 2.另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：
 
 $ git checkout -- test.txt
-
+---撤銷
+保留自己的更改
+git reset --soft HEAD~1
+---恢復出場設置
+git reset --hard HEAD~1 
