@@ -1,0 +1,10 @@
+centos 7
+1在开机启动的时候按键盘上的“E”键
+2选择相应的内核，再次按“E”(选做)
+3编辑"ro ...LANGE=en_US.UTF-8"为“rw rhgb quiet LANGE=en_US.UTF-8 init=/bin/sh"
+4按Ctrl+X进入
+5修改密码:echo "redhathuan"|passwd --stdin root
+不知到只用:passwd root方式，重启后是否生效
+6由于selinux开启着的需要执行以下命令更新系统信息,否则重启之后密码未生效:touch /.autorelabel
+7重启:exec /sbin/init
+
