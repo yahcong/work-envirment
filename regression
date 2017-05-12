@@ -1,0 +1,8 @@
+make BZLIST=1398457 TEST_TIER1="TIER1"
+python JobSubmitter_git.py ci -t RHEL-7.3 -f KABI --arch x86_64 --nvr kernel-3.10.0-514.16.1.el7 --repo-url http://git.engineering.redhat.com/git/users/ycong/kernel-tests.git# --dryrun
+touch /home/ycong/kernel-general/JobSubmitter/security
+echo BZLIST=1398457 regression/ >/home/ycong/kernel-general/JobSubmitter/security
+python JobSubmitter_git.py ci -t RHEL-7.3   --nvr kernel-3.10.0-514.16.1.el7 --repo-url http://git.engineering.redhat.com/git/users/ycong/kernel-tests.git#  -f security  
+
+生成xml ：python JobSubmitter_git.py ci -t RHEL-7.3   --nvr kernel-3.10.0-514.16.1.el7 --repo-url http://git.engineering.redhat.com/git/users/ycong/kernel-tests.git#  -f security
+ --dry-run

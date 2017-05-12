@@ -1,5 +1,28 @@
 python-function
 https://docs.python.org/3/library/functions.html#abs
+<<<<<<< HEAD
+print ('hello,'+name+'!')
+"hello," + "world!"
+x="hello,"
+y="world!"
+x+y
+
+lambda:
+>>> foo = [2, 18, 9, 22, 17, 24, 8, 12, 27]
+>>>
+>>> print filter(lambda x: x % 3 == 0, foo)
+[18, 9, 24, 12, 27]
+>>>
+>>> print map(lambda x: x * 2 + 10, foo)
+[14, 46, 28, 54, 44, 58, 26, 34, 64]
+>>>
+>>> print reduce(lambda x, y: x + y, foo)
+139
+reduce把一个函数作用在一个序列[x1, x2, x3, ...]上，这个函数必须接收两个参数!(x,y)，reduce把结果继续和序列的下一个元素做累积计算
+---
+if
+y if cond else x表示条件表达式。意思是当cond为真时，表达式的值为y，否则表达式的值为x
+=======
 函数默认参数要牢记一点：默认参数必须指向不变对象！
 不变对象None，str
 list
@@ -107,3 +130,9 @@ name是一个属性，printName( )是一个方法，与某个对象进行绑定�
 有了__init__方法，在创建实例的时候，就不能传入空的参数了，必须传入与__init__方法匹配的参数
 >>> bart = Student('Bart Simpson', 59)
 >>> bart.name
+>>>>>>> dc0f2ef1453f17b57d8b1bfc841eb61fe8106577
+---屬性----
+注意，__slots__定义的属性仅对当前类实例起作用，对继承的子类是不起作用的
+---
+@property装饰器就是负责把一个方法变成属性调用的
+
