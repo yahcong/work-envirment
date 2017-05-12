@@ -4,8 +4,6 @@
   613  virsh list --all
   614  virsh --connet qemu://system start rhel168
   615  virsh --connect qemu://system start rhel168
-  616  history
-  617  reboot
   618  sudo qemu -hda vubuntu.img -boot d -cdrom ~/kvm/ubuntu-12.04.3-desktop-amd64.iso -m 1024
   619  exit
   620  brctl addbr br0 
@@ -160,25 +158,10 @@ ping www.baidu.com
   767  ip addr 
   768  ip addr 
   769  systemctl restart network
-  770  ls
   771  vim ifcfg-enp0s25 
-  772  ls
-  773  ls -a
-  774  clear
   775  ip a
-  776  clear
-  777  ls
-  778  cd
-  779  clear
-  780  ls
   781  systemctl status network
   782  systemctl status NetworkManager
   783  systemctl status NetworkManager
   784  systemctl enabled NetworkManager
   785  systemctl enable NetworkManager
-  786  clear
-  787  ls
-  788  reboot
-  789  cd
-  790  history
-
