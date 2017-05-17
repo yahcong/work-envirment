@@ -12,3 +12,4 @@ locate qcow2查找
 tar -xjf all.tar.bz2
 查ｒｈｅｌ版本
 cat /etc/redhat-release
+

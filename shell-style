@@ -1,0 +1,172 @@
+缩进
+行的最大长度为80个字符。
+	如果你必须写长度超过80个字符的字符串，如果可能的话，尽量使用here document或者嵌入的换行符。
+	长度超过80个字符的文字串且不能被合理地分割，这是正常的。但强烈建议找到一个方法使其变短。
+# DO use 'here document's
+cat <<END;
+I am an exceptionally long
+string.
+END
+
+# Embedded newlines are ok too
+long_string="I am an exceptionally
+  long string." #缩进两个空格，没有制表符。
+
+管道
+	如果一行容不下整个管道操作，那么请将整个管道操作分割成每行一个管段。
+	如果一行容得下整个管道操作，那么请将整个管道操作写在同一行。
+	否则，应该将整个管道操作分割成每行一个管段，管道操作的下一部分应该将管道符放在新行并且缩进2个空格。
+	这适用于使用管道符’|’的合并命令链以及使用’||’和’&&’的逻辑运算链。
+
+# All fits on one line
+command1 | command2
+
+# Long commands
+command1 \
+  | command2 \
+  | command3 \
+  | command4
+
+循环
+	请将 ; do , ; then 和 while , for , if 放在同一行。
+	else 应该单独一行，结束语句应该单独一行并且跟开始语句垂直对齐。
+
+case语句
+	通过2个空格缩进可选项。
+	在同一行可选项的模式右圆括号之后和结束符 ;; 之前各需要一个空格。
+	长可选项或者多命令可选项应该被拆分成多行，模式、操作和结束符 ;; 在不同的行。
+	匹配表达式比 case 和 esac 缩进一级。多行操作要再缩进一级。
+	一般情况下，不需要引用匹配表达式。
+	模式表达式前面不应该出现左括号。
+	避免使用 ;& 和 ;;& 符号。
+	只要整个表达式可读，简单的命令可以跟模式和 ;; 写在同一行。
+	这通常适用于单字母选项的处理。当单行容不下操作时，请将模式单独放一行，然后是操作，最后结束符 ;; 也单独一行。
+	当操作在同一行时，模式的右括号之后和结束符 ;; 之前请使用一个空格分隔。
+如：
+case "${expression}" in
+  a)
+    variable="..."
+    some_command "${variable}" "${other_expr}" ...
+    ;;
+  absolute)
+    actions="relative"
+    another_command "${actions}" "${other_expr}" ...
+    ;;
+  *)
+    error "Unexpected expression '${expression}'"
+    ;;
+esac
+和
+while getopts 'abf:v' flag; do
+  case "${flag}" in
+    a) aflag='true' ;;
+    b) bflag='true' ;;
+    f) files="${OPTARG}" ;;
+    v) verbose='true' ;;
+    *) error "Unexpected option ${flag}" ;;
+  esac
+done
+------
+變量:
+	引用你的变量；推荐用 ${var} 而不是 $var
+------
+请使用 $@ 除非你有特殊原因需要使用 $*
+----
+命令替换:使用 $(command) 而不是反引号。
+---------
+推荐使用 [[ ... ]] ，而不是 [ , test , 和 /usr/bin/ [ 。
+因为在 [[ 和 ]] 之间不会有路径名称扩展或单词分割发生，所以使用 [[ ... ]] 能够减少错误。
+而且 [[ ... ]] 允许正则表达式匹配，而 [ ... ] 不允许。
+------
+测试字符串
+尽可能使用引用，而不是过滤字符串。
+Bash足以在测试中处理空字符串。所以，请使用空（非空）字符串测试，而不是过滤字符，使得代码更易于阅读。
+# Do this:
+if [[ "${my_var}" = "some_string" ]]; then
+  do_something
+fi
+
+# -z (string length is zero) and -n (string length is not zero) are
+# preferred over testing for an empty string
+if [[ -z "${my_var}" ]]; then
+  do_something
+fi
+
+# This is OK (ensure quotes on the empty side), but not preferred:
+if [[ "${my_var}" = "" ]]; then
+  do_something
+fi
+
+# Not this:
+if [[ "${my_var}X" = "some_stringX" ]]; then
+  do_something
+fi
+
+为了避免对你测试的目的产生困惑，请明确使用`-z`或者`-n`
+# Use this
+if [[ -n "${my_var}" ]]; then
+  do_something
+fi
+
+# Instead of this as errors can occur if ${my_var} expands to a test
+# flag
+if [[ "${my_var}" ]]; then
+  do_something
+fi
+
+----
+文件名的通配符扩展
+	当进行文件名的通配符扩展时，请使用明确的路径。
+	因为文件名可能以 - 开头，所以使用扩展通配符 ./* 比 * 来得安全得多。
+---
+函数名命名约定
+	使用小写字母，并用下划线分隔单词。使用双冒号 :: 分隔库。函数名之后必须有圆括号。
+	关键词 function 是可选的，但必须在一个项目中保持一致。
+	如果你正在写单个函数，请用小写字母来命名，并用下划线分隔单词。如果你正在写一个包，使用双冒号 :: 来分隔包名。
+	大括号必须和函数名位于同一行（就像在Google的其他语言一样），并且函数名和圆括号之间没有空格。
+	当函数名后存在 () 时，关键词 function 是多余的。但是其促进了函数的快速辨识。
+---
+常量和环境变量名
+全部大写，用下划线分隔，声明在文件的顶部。
+常量和任何导出到环境中的都应该大写。
+# Constant
+readonly PATH_TO_FILES='/some/path'
+
+# Both constant and environment
+declare -xr ORACLE_SID='PROD'
+
+第一次设置时有一些就变成了常量（例如，通过getopts）。
+因此，可以在getopts中或基于条件来设定常量，但之后应该立即设置其为只读。
+值得注意的是，在函数中 declare 不会对全局变量进行操作。所以推荐使用 readonly 和 export 来代替。
+----
+只读变量:使用 readonly 或者 declare -r 来确保变量只读。
+---
+使用本地變量：
+	使用 local 声明特定功能的变量。声明和赋值应该在不同行。
+	使用 local 来声明局部变量以确保其只在函数内部和子函数中可见。这避免了污染全局命名空间和不经意间设置可能具有函数之外重要性的变量。
+	当赋值的值由命令替换提供时，声明和赋值必须分开。因为内建的 local 不会从命令替换中传递退出码。
+	
+	# Separate lines for declaration and assignment:
+	local my_var
+	my_var="$(my_func)" || return
+----
+函数位置
+	将文件中所有的函数一起放在常量下面。不要在函数之间隐藏可执行代码。
+	如果你有函数，请将他们一起放在文件头部。只有includes， set 声明和常量设置可能在函数声明之前完成。
+	不要在函数之间隐藏可执行代码。如果那样做，会使得代码在调试时难以跟踪并出现意想不到的讨厌结果。
+--
+内建命令和外部命令
+	可以在调用shell内建命令和调用另外的程序之间选择，请选择内建命令。
+	我们更喜欢使用内建命令，如在 bash(1) 中参数扩展函数。
+	因为它更强健和便携（尤其是跟像 sed 这样的命令比较）
+例如：
+# Prefer this:
+addition=$((${X} + ${Y}))
+substitution="${string/#foo/bar}"
+
+# Instead of this:
+addition="$(expr ${X} + ${Y})"
+substitution="$(echo "${string}" | sed -e 's/^foo/bar/')"
+
+
+
